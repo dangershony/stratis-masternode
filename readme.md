@@ -2,8 +2,10 @@
 
 This guide will show how to run Cirrus masternode in docker compose
 
-### Building the Fullnode image
-We will build the images from the repo itself
+### Step 1 - Build
+We will build the images from the repo itself  
+
+#### Building the Fullnode image
 
 First find out which release of the code you want to run go to releases,  
 https://github.com/stratisproject/StratisFullNode/releases  
@@ -19,13 +21,29 @@ Dashboard is always master
 
 `docker build -f "Dockerfile-dashboard" -t masternode/cirrus-dashboard:latest .`
 
-### Running the docker compose containers
+### Step 2 - Deploy and sync the nodes
+
+#### Running the docker compose containers
 
 TBD
 
-### Creating federation keys and wallets
+### Step 3 - Setup and registration
 
 TBD
+
+#### Creating federation keys
+
+TBD
+
+#### Creating wallets
+
+TBD
+
+#### Register as a masternode
+
+TBD
+
+### Step 4 - Dashboard
 
 ### Setting up the dashboard
 
