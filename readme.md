@@ -1,11 +1,32 @@
-How to run this
+## Running Stratis sidechain (Cirrus) masternode in docker
 
-make sure the version you want to deploy (edit the Dockerfiles)
+This repo will show how to run Cirrus masternode in docker compose
 
-### create miner image use the version you like (or remove the APPVERSION to clone master)
+### Building the Fullnode image
+We will build the images from the repo itself
 
-docker build -f "Dockerfile-cirrusd" --build-arg APPVERSION=1.3.2.4 -t masternode/cirrus-miner:1.3.2.4 .
+First find out which release of the code you want to run go to releases,  
+https://github.com/stratisproject/StratisFullNode/releases  
 
-### create teh dashboard image
+To create the image run this command, set the APPVERSION or keep blank to build master
 
-docker build -f "Dockerfile-dashboard" -t masternode/cirrus-dashboard:latest .
+`docker build -f "Dockerfile-cirrusd" --build-arg APPVERSION=1.3.2.4 -t masternode/cirrus-miner:1.3.2.4 .`
+
+
+#### Building the Dashboard image
+
+Dashboard is always master
+
+`docker build -f "Dockerfile-dashboard" -t masternode/cirrus-dashboard:latest .`
+
+### Running the docker compose containers
+
+TBD
+
+### Creating federation keys and wallets
+
+TBD
+
+### Setting up the dashboard
+
+TBD
