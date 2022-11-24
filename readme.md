@@ -1,6 +1,6 @@
 ## Running Stratis sidechain (Cirrus) masternode in docker
 
-This repo will show how to run Cirrus masternode in docker compose
+This guide will show how to run Cirrus masternode in docker compose
 
 ### Building the Fullnode image
 We will build the images from the repo itself
