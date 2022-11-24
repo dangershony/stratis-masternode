@@ -3,14 +3,14 @@ version: "2.4"
 volumes:
   masternode_strax:
     name: masternode-strax-data
-  masternode_cirrus:
-    name: masternode-cirrus-data
-  masternode_dashboard:
-    name: masternode-cirrus-dashboard
   masternode_cirrus1:
     name: masternode-cirrus1-data
   masternode_dashboard1:
-    name: masternode-cirrus-dashboard1
+    name: masternode-cirrus1-dashboard
+  masternode_cirrus2:
+    name: masternode-cirrus2-data
+  masternode_dashboard2:
+    name: masternode-cirrus2-dashboard
 
 services:
 
@@ -30,61 +30,61 @@ services:
 
 # ========= MASTERNODE 1 ================
 
-  chain_cirrus:
-    container_name: cirrus-mn-chain
+  chain_cirrus1:
+    container_name: cirrus1-mn-chain
     image: masternode/cirrus-miner:1.3.2.4
-    command: ["-apiuri=http://0.0.0.0:37223", "-sidechain", "-apiport=37223", "-counterchainapiport=17103", "-counterchainapihost=strax-mn-chain"]
+    command: ["-apiuri=http://0.0.0.0:37223",  "-sidechain", "-apiport=37223", "-counterchainapiport=17103", "-counterchainapihost=strax-mn-chain"]
     restart: unless-stopped
     stop_grace_period: 15m
     volumes:
-      - masternode_cirrus:/root/.stratisnode
+      - masternode_cirrus1:/root/.stratisnode
     ports:
       - 16179:16179 # Make this a public node.??
       - 37223:37223
     networks:
       - masternodenetwork
 
-  dashboard:
-    container_name: dashboard-mn
+  dashboard1:
+    container_name: cirrus1-mn-dashboard
     image: masternode/dashboard:latest
     #command: ["-c Release", "-apiuri=http://0.0.0.0:37000", "--nodetype 10K", "--env mainnet", "--sdadaocontractaddress CbtYboKjnk7rhNbEFzn94UZikde36h6TCb"]
     command: []
     restart: unless-stopped
     stop_grace_period: 15m
     volumes:
-      #- masternode_cirrus:/root/.stratisnode
-      - masternode_dashboard:/usr/local/app/StratisMasternodeDashboard/src/StratisMasternodeDashboard
+      #- masternode_cirrus1:/root/.stratisnode
+      - masternode_dashboard1:/usr/local/app/StratisMasternodeDashboard/src/StratisMasternodeDashboard
     ports:
       - 37000:37000 
     networks:
       - masternodenetwork
 
-# ========= MASTERNODE 1 ================
+# ========= MASTERNODE 2 ================
 
-  chain_cirrus1:
-    container_name: cirrus1-mn-chain
+  chain_cirrus2:
+    container_name: cirrus2-mn-chain
     image: masternode/cirrus-miner:1.3.2.4
     command: ["-apiuri=http://0.0.0.0:37224", "-port=16180", "-sidechain", "-apiport=37224", "-counterchainapiport=17103", "-counterchainapihost=strax-mn-chain"]
     restart: unless-stopped
     stop_grace_period: 15m
     volumes:
-      - masternode_cirrus1:/root/.stratisnode
+      - masternode_cirrus2:/root/.stratisnode
     ports:
       - 16180:16180 # Make this a public node.??
       - 37224:37224
     networks:
       - masternodenetwork
 
-  dashboard1:
-    container_name: dashboard1-mn
+  dashboard2:
+    container_name: cirrus2-mn-dashboard
     image: masternode/dashboard:latest
     #command: ["-c Release", "-apiuri=http://0.0.0.0:37001", "--nodetype 10K", "--env mainnet", "--sdadaocontractaddress CbtYboKjnk7rhNbEFzn94UZikde36h6TCb"]
     command: []
     restart: unless-stopped
     stop_grace_period: 15m
     volumes:
-      #- masternode_cirrus1:/root/.stratisnode
-      - masternode_dashboard1:/usr/local/app/StratisMasternodeDashboard/src/StratisMasternodeDashboard
+      #- masternode_cirrus:/root/.stratisnode
+      - masternode_dashboard2:/usr/local/app/StratisMasternodeDashboard/src/StratisMasternodeDashboard
     ports:
       - 37001:37001 
     networks:
