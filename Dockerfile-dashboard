@@ -1,0 +1,19 @@
+# FROM mcr.microsoft.com/dotnet/aspnet:6.0
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1
+
+WORKDIR /usr/local/app/
+
+RUN apt-get update \
+    && apt-get install -y curl git nano \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+ARG APPVERSION=master
+ENV APPVERSION=${APPVERSION}
+
+RUN if [ "$APPVERSION" = "master" ]; then git clone https://github.com/stratisproject/StratisMasternodeDashboard.git; else git clone https://github.com/stratisproject/StratisMasternodeDashboard.git -b "release/${APPVERSION}"; fi 
+WORKDIR /usr/local/app/StratisMasternodeDashboard/src/StratisMasternodeDashboard
+
+RUN dotnet build -c Release
+
+ENTRYPOINT ["dotnet", "run"]

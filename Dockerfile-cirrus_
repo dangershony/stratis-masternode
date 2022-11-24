@@ -1,0 +1,14 @@
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
+
+WORKDIR /usr/local/app/
+
+RUN apt-get update \
+    && apt-get install -y curl nano libsnappy-dev libc-dev libc6-dev libc6 unzip \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN curl -LO https://github.com/stratisproject/StratisFullNode/releases/download/1.3.2.4/Stratis.CirrusD-linux-x64.zip
+
+RUN unzip Stratis.CirrusD-linux-x64.zip
+
+ENTRYPOINT ["dotnet", "Stratis.CirrusMinerD.dll"]

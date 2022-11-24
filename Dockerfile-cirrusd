@@ -1,0 +1,19 @@
+# FROM mcr.microsoft.com/dotnet/aspnet:6.0
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1
+
+WORKDIR /usr/local/app/
+
+RUN apt-get update \
+    && apt-get install -y git nano libsnappy-dev libc-dev libc6-dev libc6 \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+ARG APPVERSION=master
+ENV APPVERSION=${APPVERSION}
+
+RUN if [ "$APPVERSION" = "master" ]; then git clone https://github.com/stratisproject/StratisFullNode.git; else git clone https://github.com/stratisproject/StratisFullNode.git -b "release/${APPVERSION}"; fi 
+WORKDIR /usr/local/app/StratisFullNode/src/Stratis.CirrusMinerD
+
+RUN dotnet build -c Release
+
+ENTRYPOINT ["dotnet", "run"]
