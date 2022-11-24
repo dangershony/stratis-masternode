@@ -1,4 +1,4 @@
-## Running Stratis sidechain (Cirrus) masternode in docker
+## Running Stratis sidechain (Cirrus) masternode in docker-compose
 
 This guide will show how to run Cirrus masternode in docker compose
 
