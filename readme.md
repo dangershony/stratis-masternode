@@ -195,4 +195,13 @@ Adapt the ports and host name for each masternode (for example the masternode2 h
 
 Navigate to `http://localhost:37000/` to view the dashboard
 
+### FAQ
+
+- *If I restart my pc do I need to do anythng?*  
+No docker is pretty resilient it will bring all the containers back online and continue staking (for mainchain you may have to start staking unless you setup auto staking in config)   
+- *If I want to add a new masternode later can I do that?*  
+Sure just follow the same process to add masternode3 (or 4 or 5 etc...) give unique ports and names and run the command `docker-compose up -d` to add the new containers, **Important** make sure you don't remove collateral from the other addresses when topping up the new collateral address.  
+- *Can I monitor my staking coins on mainchain and sidechain from my mobile phone or another computer?*  
+Yes you can, either do that using our coinvault/blockcore explorers https://explorer.coinvault.io/ - https://explorer.blockcore.net/ or import your wallets to the coinvault/blockcore non-custodial wallets under https://wallet.coinvault.io/ - https://wallet.blockcore.net/ and view your rewards there (for staking wallets we recommend the quick mode)
+
 Good luck...
